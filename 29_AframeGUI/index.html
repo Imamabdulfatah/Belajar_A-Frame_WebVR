@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Event</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- document penggunaan -->
+    <!-- https://github.com/rdub80/aframe-gui  -->
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    
+</head>
+<body>
+    <a-scene>
+        <a-camera>
+            <a-gui-cursor design="cross" fuse="true" fuse-timeout="2000"></a-gui-cursor>    
+        </a-camera>
+        <!-- # flex diretion agar menurun tombol button 
+             # align digunakan posisi tombol paling kiri/kanan  flexstart=kiri flexEnd=kanan dan tergantung flex direction atas bawah-->
+
+        <a-gui-flex-container panel-color='grey' align-items='middle' flex-direction='row' width=5 height=5 opacity="0.5" position="0 1.5 -3">
+            <a-gui-button value="A"></a-gui-button>
+            <a-gui-button value="B"></a-gui-button>
+            <a-gui-button value="C"></a-gui-button>
+            <a-gui-flex-container panel-color='grey' align-items='middle' flex-direction='column' opacity="0.5" position="0 1.5 -3">
+                <a-gui-button value="A"></a-gui-button>
+                <a-gui-button value="B"></a-gui-button>
+                <a-gui-button value="C"></a-gui-button>
+    
+            </a-gui-flex-container>
+
+        </a-gui-flex-container>
+        <!-- <a-box position="4 1.5 -3" color="red" id="box1" contoh></a-box> -->
+      
+    </a-scene>
+    
+</body>
+</html>

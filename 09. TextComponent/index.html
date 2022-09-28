@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- <a-text value="contoh teks"
+            color="#ff0000"
+            position="0 1.5 -2"
+        ></a-text> -->
+        
+        <!-- lihat feature di inspector  ctrl+alt+i -->
+        <!-- wrapCont digunakan untuk membatasi berapa huruf -->
+        <a-entity
+        
+            text="
+                value:contoh teks dasar\ncontoh teks dasar\ncontoh teks dasar\ncontoh teks dasar\n;
+                color:#ff0000;
+                wrapCount:10;
+                font:font/Monoton-msdf.json;
+                align: center;
+            "
+            geometry="primitive:plane;width:auto;height:auto;"
+            material="color:#aaaaaa"
+            position="0 1.5 -2">
+
+        </a-entity>
+    </a-scene>
+
+    <!-- https://msdf-bmfont.donmccurdy.com/ -->
+    <!-- ini web untuk mengubah file font ( name.ttf ) ke file untuk a-frame (json)-->
+    <!-- INI UNTUK SELECT CHARACTER -->
+    <!-- abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -->
+    
+</body>
+</html>

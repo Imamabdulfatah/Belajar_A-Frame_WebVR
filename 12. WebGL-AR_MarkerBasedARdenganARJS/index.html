@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <!-- yang marker tracking -->
+    <!-- https://ar-js-org.github.io/AR.js-Docs/ -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+</head>
+<!-- untuk gambar agar muncul kotak -->
+<!-- https://medium.com/chialab-open-source/ar-js-the-simpliest-way-to-get-cross-browser-ar-on-the-web-8f670dd45462 -->
+
+<!-- iniyang mengunakan marker -->
+<body style="margin: 0px; overflow: hidden;">
+    <!-- embeded ini menggunakan toolkit -->
+    <a-scene embedded arjs="detectionMode:mono_and_matrix; matrixCodeType:3x3_PARITY65">
+
+    <!-- membuat dengan marker/foto kita sendiri -->
+    <!-- untuk merubah foto kemaker -->
+     <!-- https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html -->
+        <a-maker type="pattern" url="patt/pattern-1.patt">
+            <a-box color="#ff00ff" material="opacity:0.5" scale="0.5 0.5 0.5"
+                animation__putar="property:rotation; from:0 0 0; to:0 360 0; startEvents:mouseenter;"
+            ></a-box>
+        </a-maker>
+
+
+
+             <!--ini buat yang barcode  -->
+    <!-- https://github.com/nicolocarpignoli/artoolkit-barcode-markers-collection -->
+    <!-- value bisa dirubah -->
+        <a-maker type="barcode" value="5">
+            <a-box color="#ffff00" material="opacity:0.5" scale="0.5 0.5 0.5"
+                animation__putar="property:rotation; from:0 0 0; to:0 360 0; startEvents:mouseenter;"
+            ></a-box>
+        </a-maker>
+
+    <!-- mengunakan kata/huruf -->
+        <a-marker preset="hiro">
+            <a-box color="#ff0000" material="opacity:0.5" scale="0.5 0.5 0.5"
+                animation__putar="property:rotation; from:0 0 0; to:0 360 0; startEvents:mouseenter;"
+            ></a-box>
+        </a-marker>
+
+        <a-marker preset="kanji">
+            <a-box color="#00ff00" material="opacity:0.5" scale="0.5 0.5 0.5"
+                animation__putar="property:rotation; from:0 0 0; to:0 360 0; startEvents:mouseenter;"
+            ></a-box>
+        </a-marker>
+
+   
+
+        <a-entity camera>
+            <a-cursor></a-cursor>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
+
+  <!--  https://github.com/AR-js-org/AR.js  -->
+    <!-- https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html -->
+
+    <!-- dokumentasi -->
+    <!-- https://ar-js-org.github.io/AR.js-Docs/marker-based/ -->

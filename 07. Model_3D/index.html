@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- https://github.com/n5ro/aframe-extras -->
+    <!-- berguna untuk menggunakan gerakan animasi di blender, sketchup atau maya -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <!-- mengambil model 3D dari blender -->
+    <a-scene>
+        
+        <a-asset>
+            <a-asset-item id="hp" src="model2/hp.gltf"></a-asset-item>
+        </a-asset>
+        <!-- masukan animation dari blender dengan animation mixer dan lihat component digltf viwer -->
+        <!-- bisa dilihat ada apa aja di animation mixer di github diatas atau disini-->
+        <!-- https://github.com/n5ro/aframe-extras/tree/master/src/loaders -->
+        <!-- kalau mixer akan mencampurkan -->
+
+        
+        <a-entity
+            gltf-model="#hp"
+            position="3 1.5 -3"
+            rotation="0 0 0"
+            animation-mixer="clip:Nodding;"
+        >
+
+        </a-entity>
+
+        <a-gltf-model src="model2/latihan Dasar2.gltf"
+            position="-3 1.5 -3"
+            animation-mixer="clip:Nodding;loop:pingpong;"
+        >
+        </a-gltf-model>
+
+        <a-gltf-model src="model/aneh.gltf"
+            position="0 1.5 -3"
+            animation-mixer="clip:Shaking"
+        >
+        </a-gltf-model>
+    </a-scene>
+    
+</body>
+</html>
+
+
+<!-- wrb model 3d -->
+<!-- https://www.youtube.com/watch?v=tfXq5jdbhEg -->
+<!-- https://products.aspose.app/3d/conversion -->
+<!-- https://products.aspose.app/3d/search/Tree -->
+
+<!-- web viewer gltf -->
+<!-- https://gltf-viewer.donmccurdy.com/ -->

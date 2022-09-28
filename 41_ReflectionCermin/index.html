@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+    <!-- documentasi -->
+    <!-- https://github.com/gftruj/webzamples/tree/master/PlanetVoodoo/reflection -->
+    <script src="https://gftruj.github.io/webzamples/PlanetVoodoo/reflection/dist/phong-reflector-component.js"></script>
+
+   
+</head>
+<body>
+    <!-- membuat cermin di aframe -->
+    <a-scene>
+        <a-sky color="lightGrey"></a-sky>
+        <a-camera position="-0.7 1.5 1"></a-camera>
+
+        <a-box position="0 1.5 -2" color="red"></a-box>
+        <a-box position="2 1.5 -2" color="green"></a-box>
+        <a-box position="-2 1.5 -2" color="blue"></a-box>
+
+        <!-- ambientOcculusionMap = untuk menetukan shadow dan pecahayaan cermin -->
+        <!-- displacementMap: texture cermin menonjol  tergantung dari segments-height-->
+        <!-- blendingIntencity : untuk kebeningan cermin -->
+        <a-plane position="0 1.5 -4" width="10" height="10" color="purple"
+                 segments-height="64" segments-width="64"
+                 phong-reflector="
+                            src: img/brick.jpg;
+                            repeat: 1 1;
+                            normalMap: img/brick2.jpg;
+                            normalScale: 10;
+                            ambientOcculusion: img/grass.jpg; 
+                            ambientOcculusionIntensity: 0.2;
+                            displacementMap: img/brick.jpg;
+                            displacementScale: 3;
+                            blendingIntensity: 0.1"
+        ></a-plane>
+    </a-scene>
+   
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Event</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    
+</head>
+<body>
+    <script>
+        AFRAME.registerComponent('contoh', {
+            init : function () {
+                let el = this.el;
+                el.addEventListener('click', function() {
+                    console.log(`%cClicked`, 'font-size:2em');
+                      // // kalau event false maka tidak bubling/terhubung
+                    //   memasukan bislangan acak ke kotak merah
+                    el.emit('contoh_event', {nilai:Math.ceil(Math.random() * 10)}, true);
+
+                    // untuk memanggill event yang berbeda component
+                    // let box2 = document.querySelector('#box2');
+                  
+                    // box2.emit('contoh_event',{}, false);
+                });
+            },
+        });
+
+        AFRAME.registerComponent('contoh2', {
+            init : function () {
+                let el = this.el;
+                el.addEventListener('contoh_event', function() {
+                    // terhubung dengan atas
+                    console.log(`%cBil Acak : ${event.detail.nilai}`, 'font-size:2em');
+                });
+            },
+        });
+    </script>
+    <a-scene contoh2>
+        <a-camera>
+            <a-cursor raycaster="objects:a-box"></a-cursor>
+        </a-camera>
+        <!-- karena ditaruh di dalam maka akan mengikuti animation box kuning dan merah -->
+        <a-box color="yellow" position="-2 1.5 -3" 
+         animation="property:rotation; from: 0 0 0; to:0 360 0; dur: 2000;
+         startEvents: contoh_event">
+            <a-box position="0 1.5 -3" color="red" id="box1" contoh></a-box>
+        </a-box>
+       
+        <a-box position="2 1.5 -3" color="green" id="box2" ></a-box>
+    </a-scene>
+    
+</body>
+</html>

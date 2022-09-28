@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- textture gambar yang kita pasangkan ke dunia 3D -->
+        <!-- <a-box
+            src = "texture/Brick/3.jpg"
+            repeat = "2 2"
+            position="0 1.5 -2"
+            normal-map = "texture/Brick/normalmap.jpg"
+            normal-texture-repeat="2 2"> -->
+            <!-- repeat ini pengulangan texture dalam 1 object -->
+            <!-- jika foto kita dipasang normalmap maka akan semakin terlihat real -->
+            <!-- normalmap digunakan untukmelihat texture gambar serta pencahayaan -->
+            <!-- pantulan nya adalah vektor dari rgb jika warna biru= pas pencahyaan pantulan -->
+        <!-- </a-box> -->
+
+        <a-assets>
+            <img src="texture/Brick/5.jpg" id="base">
+            <img src="texture/Brick/normalputih.jpg" id="normal">
+            <img src="texture/Brick/6.jpg" id="height">
+        </a-assets>
+
+        <a-box
+            src = "#base"
+            repeat = "2 2"
+            normal-map = "#normal"
+            segment-height="10"
+            segment-width="10" 
+            segment-depth="10"
+            normal-texture-repeat="2 2"
+            displacement-map="#height"
+            displacement-bias= 0
+            displacement-scale = 0.2
+            displacement-texture-repeat="2 2"
+            position="0 1.5 -2">
+            
+            <!-- height ini gambar hitam putih yang akan maju dan semakin hitam diam  -->
+            <!-- segmen akan membuat banyak titik dikotak -->
+            <!-- displacement ini merenggangkan antar sisi -->
+        </a-box>
+
+        <a-sphere 
+            src="#base"
+            normal="#normal"
+            normal-texture-repeat="2 2"
+            repeat="2 2"
+            position="1 1.5 -2"
+            radius= 0.5 >
+            
+        </a-sphere>
+    </a-scene>
+    
+</body>
+</html>

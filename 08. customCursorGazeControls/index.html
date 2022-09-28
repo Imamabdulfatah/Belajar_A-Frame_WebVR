@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-camera>
+            <!--  fuse digunakan untuk klik dengan kursor-->
+            <!-- fusetimeout jika kita melihat selama 2 detik maka akan bergerak cursor-->
+            <!-- raycaster digunakan mengeluarkan (cast) sinar (ray) dari lokasi dia ke jarak tertentu dan setiap benda yang terkena sinar. itulah yang dipilih pengguna -->
+            <a-entity
+                raycaster="objects:.bisadiklik"
+                cursor="fuse:true;fuseTimeOut:2000"
+                geometry="primitive:box; width:0.2; height:0.2; depth:0.2;"
+                material="color:#ff0000;"
+                position="0 0 -2"
+                animation__fusing="property:scale;
+                    from: 1 1 1;
+                    dur: 2000;
+                    to: 0.1 0.1 0.1;
+                    starEvents:fusing;
+                    "
+                animation__pegi="property:scale;
+                to: 1 1 1;
+                startEvents:mouseleave"
+                >
+
+            </a-entity>
+        </a-camera>
+        <a-box position="0 1.5 -3" color="#44aa00"
+            class="bisadiklik"
+            animation__rotasi="property:rotation;
+            from:0 0 0;
+            to:0 360 0;
+            startEvents:click;"
+        ></a-box>
+        <a-box position="2 1.5 -3" color="#55aa00"
+            animation__rotasi="property:rotation;
+            from:0 0 0;
+            to:0 360 0;
+            startEvents:click;"
+        ></a-box>
+        <a-box position="-2 1.5 -3" color="#aa5500"
+            animation__rotasi="property:rotation;
+            from:0 0 0;
+            to:0 360 0;
+            startEvents:click;"
+        ></a-box>
+    </a-scene>
+    
+</body>
+</html>

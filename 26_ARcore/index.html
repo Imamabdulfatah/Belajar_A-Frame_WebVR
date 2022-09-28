@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Core</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- https://github.com/chenzlabs/aframe-ar -->
+    <script src="https://cdn.jsdelivr.net/gh/chenzlabs/aframe-ar@master/dist/aframe-ar.min.js"></script>
+</head>
+<body>
+    <!-- documenttion -->
+    <!-- web hp support ARcore -->
+    <!-- https://developers.google.com/ar/devices -->
+
+    <script>
+        function tampilPesan(pesan) {
+            let hud = document.querySelector("#hud");
+            hud.setAttribute('value', pesan)
+        }
+        AFRAME.registerComponent('ar-logic', {
+            init : function() {
+               tampilPesan('ar-logic running')
+            },
+            tick : function() {
+                let cam = document.querySelector("#cam");
+                if (!cam) {return;}
+                tampilPesan('cam detected');
+                let tumbukan = cam.components.raycater.getIntersection(this.el);
+                if(!tumbukan) {return;}
+                tampilPesan('ada tumbukan' + tumbukan.point.x.toFixed(2) + " " + tumbukan.point.z.toFixed(2));
+                lingkaran.setAttribute('position', tumbukan.point);
+            }
+        });
+
+        // membuat curusor untuk memmindahkan benda
+        window.addEventListener('touchstart', function(){
+            let box = document.querySelector("#box");
+            let lingkaran = document.querySelector("#lingkaran");
+            let pos = lingkaran.getAttribute('position');
+            let posBox = box.getAttribute('position');
+
+            // membahka anaimasi jiaka dipindahkan geraknya
+            let distance = posBox.distanceTo(pos);
+
+            let position_string = `${pos.x.toFixed(2)} ${pos.y.toFixed(2)} ${pos.z.toFixed(2)}`;
+            box.setAttribute('animation', `property:position; to: ${position_string}; dur:${distance= 150};`);
+
+            // box.setAttribute('position'.pos);
+        });
+
+
+
+    </script>
+
+    <!-- hanya bisa digunakan di hp yang sesuai -->
+    <a-scene ar>
+        <!-- raycaster agar tidak terkena benda apapun oleh airframe-->
+        <!-- jangan kita buat dalam div dan lainya akan hilang maka buat di dalam item -->
+        <a-camera id="cam" ar-raycaster="objects:none;">
+            <a-text 
+                id="hud"
+                value="contoh text"
+                position="0 -0.1 -0.25"
+                align="center"
+                wrap-count="800">
+            </a-text>
+            <!-- ini digunakan agar tidak bertubrukan dan menyesuaikan dunia nyata -->
+            <a-ring
+                id="lingkaran"
+                rotation="-90 0 0"
+                radius-inner="0.01"
+                radius-Outer="0.02">
+            </a-ring>
+        </a-camera>
+        <a-box color="red" scale="0.2 0.2 0.2"></a-box>
+    </a-scene>
+
+    <!-- bisa coding lewat server -->
+    
+</body>
+</html>

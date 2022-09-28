@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- bisa di mobile browser/ hp -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARJS Image Marker</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- arjs -->
+    <!-- https://ar-js-org.github.io/AR.js-Docs/image-tracking/ -->
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+    <style>
+        #footer{
+            position: absolute;
+            bottom:0;
+            left:50%;
+            transform: translate(-50%, -50%);
+            background-color:rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            color: white;
+            font-size:3em;
+
+        }
+    </style>
+    <script>
+        addEventListener('makerFound', function() {
+            document.querySelector("#footer").innerHTML = 'marker found';
+        });
+
+        addEventListener('makerFound', function() {
+            document.querySelector("#footer").innerHTML = 'marker lost';
+        });
+    </script>
+   
+</head>
+<body>
+
+    <div class="footer"></div>
+
+    <!-- mengubah foto ke nft image marker -->
+    <!-- https://carnaux.github.io/NFT-Marker-Creator/#/about -->
+    
+    <!-- jika kita arah kan kamera ke gambar maka akan muncul a-box -->
+    <a-scene vr-mode-ui="enabled:false;" arjs>
+        <a-nft type='nft' url="image/industry"
+        emitevents="true">
+            <a-box scale="100 100 100"></a-box>
+        </a-nft>
+          
+    </a-scene>
+    
+</body>
+</html>

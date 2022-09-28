@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Event</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- document penggunaan -->
+    <!-- https://github.com/rdub80/aframe-gui  -->
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+
+    <script>
+        function contohFunction() {
+            alert("contoh Function");
+        }
+
+        // untuk input
+        function initTextField(){
+            let textBox = document.querySelector("#input2");
+            // appendText untuk mengisi ke obeject
+            textBox.components["gui-input"].appendText("contoh input");
+            textBox.components["gui-input"].delete("contoh input");
+        }
+
+        // menghapus
+        function clear() {
+            let textBox = document.querySelector("#input2");
+            textBox.setAttribute('gui-input', 'text', '')
+
+        }
+    </script>
+    
+</head>
+<body>
+    
+    <a-scene>
+        <a-camera>
+            <a-gui-cursor design="cross" fuse="false" fuse-timeout="2000" taycast="objects:[gui-cursor]"></a-gui-cursor>    
+        </a-camera>
+        <!-- # flex diretion agar menurun tombol button 
+             # align digunakan posisi tombol paling kiri/kanan  flexstart=kiri flexEnd=kanan dan tergantung flex direction atas bawah-->
+
+        <a-gui-flex-container panel-color='grey' align-items='middle' flex-direction='column' width="5" height="5" opacity="0.5" position="0 1.5 -3">
+            <a-gui-flex-container flex-direction="row">
+                <a-gui-button value="A" onclick="alert('hello');"></a-gui-button>
+                <a-gui-button value="B" onclick="contohFunction"></a-gui-button>
+                <a-gui-button value="C" toggle="true"></a-gui-button>
+            </a-gui-flex-container>
+
+            <a-gui-flex-container flex-direction="row">
+                <!-- link daftar keycode -->
+                <!-- https://edwardsamuel.wordpress.com/2012/08/05/javascript-key-codes/ -->
+                <a-gui-button  key-code="90" value="A" onclick="clear"></a-gui-button>
+                <!--margin =   top right bottom left -->
+                <a-gui-button margin="0 0 0 0"  key-code="90"  value="B" onclick="contohFunction"></a-gui-button>
+                <!-- toggle jika true akan nyala dan mati sperti saklar -->ini
+                <a-gui-button value="C" onclick="initTextField"></a-gui-button>
+            </a-gui-flex-container>
+
+            <a-gui-flex-container flex-direction="row">
+                <!-- untuk menampilakan suatu  -->
+               <a-gui-label value="ini label"></a-gui-label>
+               <a-gui-input id="input1" width="1" value="satu"></a-gui-input>
+               <a-gui-input id="input2" width="1" ></a-gui-input>
+            </a-gui-flex-container>
+
+        </a-gui-flex-container>
+        
+      
+
+      
+    </a-scene>
+    
+</body>
+</html>

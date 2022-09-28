@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal AI</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- https://my.zap.works/downloads/ -->
+    <script src="https://libs.zappar.com/zappar-aframe/0.3.9/zappar-aframe.js"></script>
+   
+    <!-- untuk unity -->
+    <!-- <script src="https://github.com/zappar-xr/universal-ar-unity.git"></script> -->
+   <!-- untuk rect & three.js -->
+   <!-- <script src="npm i @zappar/zappar-react-three-fiber"></script> -->
+   <!-- untuk three.js aja -->
+   <!-- <script src="https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.js"></script> -->
+    <!-- untuk javascript -->
+    <!-- <script src="https://libs.zappar.com/zappar-js/0.3.11/zappar.js"></script> -->
+</head>
+<body>
+    <!-- document di universal AR -->
+    <!-- https://docs.zap.works/universal-ar/a-frame/tracking/image-tracking/ -->
+    
+    <a-scene>
+        <a-assets id="marker_saya" src="image/industry.zpt"></a-assets>
+
+        <a-entity camera zappar-camera></a-entity>
+        <a-entity zappar-image="#maker_saya">
+            <a-box color="red"></a-box>
+        </a-entity>
+
+    </a-scene>
+    
+</body>
+</html>
+
+<!-- keunggulan sangat baik dan akurat -->
+
+<!-- penguaan zapworks -->
+<!-- install di npm dengan {npm i -g @zappar/zapworks-cli} -->
+<!-- memastikan terpasang zapworks help -->
+<!-- merubah file foto ke zile zapwork yaitu dengan
+     - cari foto
+     - masuk folder dan foto zapworks train name 
+     - hasil foto.zpt-->

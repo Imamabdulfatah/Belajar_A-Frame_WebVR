@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanding Aframe</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+</head>
+<body>
+    <!-- menambahkan script ke component -->
+    <!-- https://aframe.io/docs/1.3.0/introduction/writing-a-component.html#sidebar -->
+
+    <script>
+
+        // init ini digunakan untuk menginisialisasi data dan di transfer kekomponent
+        // console.log dibawah di isi data string
+        // dan gigunakan membentuk data
+
+        // schema ini digunakan untuk component seperti material , position dan lain
+        // dan type ini yaitu tipe data dan defaultnya dibawah websitenya
+        // https://aframe.io/docs/1.3.0/core/component.html#property-types
+        
+
+        AFRAME.registerComponent('hello-aframe', {
+            schema : {
+                pesan: {type: "string", default:"hello"},
+                pesan2: {type: "string", default:"sesuatu"},
+            },
+            init : function() {
+                console.log(this.data.pesan + " " + this.data.pesan2);
+            }
+        });
+    </script>
+   
+
+    <a-scene>
+      <a-entity hello-aframe="pesan:hello;pesan2:entity baru;"></a-entity>
+      <a-box
+        hello-aframe="pesan: goodbye; pesan2:a-box lama"
+        id="box1"
+        material="color:red;"
+        position="0 1.5 -3"
+      ></a-box>
+    </a-scene>
+</body>
+</html>

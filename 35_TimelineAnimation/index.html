@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Animation</title>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="../node_modules/aframe-animation-timeline-component/dist/aframe-animation-timeline-component.js"></script>
+</head>
+<body>
+    <a-scene animation-timeline="timeline:#timeline1; loop:true;">
+
+        <!-- timeline animation untuk memberi giliran animasi di suatu items -->
+
+        <a-timeline id="timeline1">
+            <a-timeline-animation select="#box1" name="satu"></a-timeline-animation>
+            <a-timeline-animation select="#box1" name="dua"></a-timeline-animation>
+            <a-timeline-animation select="#box1" name="tiga"></a-timeline-animation>
+            <!-- dan terlebih dahulu didalam baru diluar -->
+            <a-timeline-group>
+                <a-timeline-animation select="#box2" name="satu"></a-timeline-animation>
+                <a-timeline-animation select="#box2" name="dua"></a-timeline-animation>
+    
+            </a-timeline-group>
+        </a-timeline>
+        <a-box 
+            id="box1"
+            color="red" 
+            position="0 1.5 -5"
+
+            animation__satu = "
+                property:position; 
+                from: 0 1.5 -5;  
+                to: 0 1.5 -10; 
+                dur:2000;
+                autoplay:false;"
+            animation__dua = "
+                property:rotation; 
+                from: 0 0 0;  
+                to: 0 360 0; 
+                dur:2000;"
+            animation__tiga = "
+                property:position; 
+                from: 0 1.5 -10;  
+                to: 0 1.5 -5; 
+                dur:2000;"
+        ></a-box>
+
+        <a-box 
+            id="box2"
+            color="green" 
+            position="-1 1.5 -5"
+
+            animation__satu = "
+                property:position; 
+                from: 0 1.5 -5;  
+                to: 1 1.5 -5; 
+                dur:2000;
+                autoplay:false;"
+            animation__dua = "
+                property:rotation; 
+                from: 0 0 0;  
+                to: 0 360 0; 
+                dur:2000;"
+            animation__tiga = "
+                property:position; 
+                from: 1 1.5 -5;  
+                to: 0 1.5 -5; 
+                dur:2000;"
+        ></a-box>
+    </a-scene>
+    
+</body>
+</html>

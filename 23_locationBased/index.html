@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Based Augmented reality</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+</head>
+<body style="margin:0; overflow:hidden">
+    <!-- SCRIPT MENGECEK/MELACAK LOKASI KITA -->
+    <script>
+        AFRAME.registerComponent('locationfinder', {
+            init : function() {
+                navigator.geolocation.getCurrentPosition(function(location) {
+                    console.log(location)
+                });
+            },
+        });
+    </script>
+
+    <!-- location based -->
+    <!-- https://ar-js-org.github.io/AR.js-Docs/location-based/ -->
+    <a-scene embedded arjs="source:webcam; sourceWidth:1280; sourceHeight:960; displayWidth:1280; displayHeight:960;">
+        <!-- digunakan agar camera terhubung ke gps kamera sadar akan location -->
+        <!-- https://www.latlong.net/ -->
+        <!-- web ini adalah untuk melihat latitude(jarak) bisa digunakan untuk menentukan latitude landmark dan lainya -->
+        <a-camera 
+            locationfinder 
+            gps-camera="simulateLatitude: -6.388841; simulateLongitude:106.745778 ;" 
+            rotation-reader>
+        </a-camera>
+
+        <!-- object yang akan muncul difoto -->
+        <a-text 
+            value="Jl ALBarkah" 
+            scale="15 15 15" 
+            look-at="[gps-camera]"
+            align="center"
+            gps-entity-place="latitude: -6.389137; longitude: 106.745518 ;"
+        ></a-text>
+        <a-text 
+            value="Home" 
+            scale="15 15 15" 
+            look-at="[gps-camera]"
+            align="center"
+            gps-entity-place="latitude: -6.389137; longitude: 106.745518 ;"
+        ></a-text>
+        <a-text 
+            value="Jl H Namat" 
+            scale="15 15 15" 
+            look-at="[gps-camera]"
+            align="center"
+            gps-entity-place="latitude: -6.389137; longitude: 106.745518 ;"
+        ></a-text>
+
+        
+    </a-scene>
+    
+</body>
+</html>

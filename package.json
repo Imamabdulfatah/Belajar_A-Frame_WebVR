@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "aframe-animation-timeline-component": "^2.0.0",
+    "aframe-event-set-component": "^5.0.0",
+    "aframe-instanced-mesh": "^0.5.0",
+    "frame": "^1.0.0-alpha.2"
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+</head>
+<body>
+    <!-- mixin digunkana agar kita tidak menulis komponent yang sama berulang kali -->
+    <a-scene>
+        <a-assets>
+            <a-mixin 
+                id="kotakmerah" 
+                geometry="primitive:box;" 
+                material="color:#ff0000"
+            ></a-mixin>
+            <a-mixin
+                id="berputar"
+                animation="property:rotation;
+                           dur:2000;
+                           to: 0 360 0;
+                           loop:true;"
+            ></a-mixin>
+            <a-mixin
+                id="hijau"
+                material="color:#00ff00"
+                >
+            </a-mixin>
+        </a-assets>
+
+        <!-- contoh menimpa warna maka yang paling kanan akan dipakai -->
+        <a-camera><a-cursor></a-cursor></a-camera>
+        <a-entity position="2 1.5 -3" mixin="kotakmerah hijau berputar"></a-entity>
+        <a-entity position="0 1.5 -3" mixin="kotakmerah"></a-entity>
+        <a-entity position="-2 1.5 -3" mixin="kotakmerah hijau berputar"
+            material="color:#aaaa00">
+        </a-entity>
+    </a-scene>
+</body>
+</html>

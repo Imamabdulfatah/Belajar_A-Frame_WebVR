@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+</head>
+<body>
+    <script>
+        AFRAME.registerComponent("kotakkosong", {
+            schema : {
+                besar : {type:"number", default:1}
+            },
+            tick : function(){
+                this.torus3D.rotation.y += 0.1;
+            },
+            update : function(old) {
+
+            },
+            remove : function(){
+                this.el.removeObject3D("mesh");
+            },
+
+            init : function(){
+                let data = this.data;
+                // ini mengambil dari THREE.js
+                // https://threejs.org/docs/index.html?q=geom#manual/en/introduction/Creating-a-scene
+                this.bentuk = new THREE.BoxGeometry(data.besar, data.besar, data.besar,5,5,5);
+                this.material = new THREE.MeshStandardMaterial({color:0xffff00, wireframe:true})
+                // https://threejs.org/docs/index.html?q=mesh#api/en/materials/MeshStandardMaterial
+                this.kotak3D = new THREE.Mesh(this.bentuk, this.material);
+
+                this.bentuk2 = new THREE.TorusBufferGeometry(1.5 , 0.2, 45, 45);
+                this.torus3D = new THREE.Mesh(this.bentuk2, this.material);
+
+                // dibuat grup
+                this.group = new THREE.Group();
+                this.group.add(this.kotak3D);
+                this.group.add(this.torus3D);
+
+                // dipanggil
+                this.el.setObject3D("mesh", this.group);
+            }
+        });
+    </script>
+    <a-scene>
+        <a-entity kotakkosong position="0 1.5 -3"></a-entity>
+    </a-scene>
+</body>
+</html>

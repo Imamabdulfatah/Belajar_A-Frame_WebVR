@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physics Testing</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+    <!-- documentasion -->
+    <!-- https://github.com/n5ro/aframe-physics-system -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script> -->
+
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  </head>
+  <body>
+    <!-- documentasiscteppe.js -->
+    <!-- http://schteppe.github.io/cannon.js/docs/ -->
+    <!-- untuk mengunakan aksi dorong
+  - impulse menambhkan dorongan
+  - worldPoint titik awal dorongan -->
+    <script>
+      AFRAME.registerComponent("pushableobject", {
+        init: function () {
+          let el = this.el;
+
+          el.addEventListener("collide", function () {
+            console.log("%c" + ev.srcElement.id, "font-size:2em");
+          });
+
+          el.addEventListener("click", function () {
+            let position = el.getAttribute("position");
+            let object_position = new THREE.Vector3(position.x, position.y, position.z);
+
+            // untuk camera posisi
+            let position_cam = document.querySelector("#cam").getAttribute("position");
+            let cam_pos = new THREE.Vector3(position_cam.x, position_cam.y, position_cam.z);
+
+            let direction = cam_pos.sub(object_position); // kearah camera (towrd camera)
+
+            direction = direction.normalize();
+            let speed = -10;
+            direction = direction.multiplyScalar(speed);
+            // menambahkan gaya
+            // ini Vector3 THREE.js
+            // http://schteppe.github.io/cannon.js/docs/classes/Body.html
+            el.body.applyImpulse(
+              // kali -1 agar ke depan
+              new CANNON.Vec3(direction.x, 0, direction.z), // bergerak kecamera dan semakin jauh maka semakin cepat gerakan
+              // new CANNON.Vec3(0, 0, -5), // ke arah z - (away from camera) dan untuk mempercepat gerak
+              new CANNON.Vec3().copy(object_position)
+            );
+          });
+        },
+      });
+    </script>
+
+    <a-scene physics="debug:true">
+      <a-camera id="cam">
+        <a-cursor></a-cursor>
+      </a-camera>
+
+      <a-box shadow rotation="-90 0 0" color="#888" static-body width="10" height="10" depth="0.2" position="0 0 -5"></a-box>
+      <!-- mass = masa benda tersebut -->
+      <a-sphere id="red" pushableobject radius="0.2" color="red" shadow dynamic-body="mass:5;" position="0 1.5 -3"></a-sphere>
+      <a-sphere id="green" pushableobject radius="0.2" color="green" shadow dynamic-body="mass:25;" position="2 1.5 -5"></a-sphere>
+      <a-sphere id="blue" pushableobject radius="0.2" color="blue" shadow dynamic-body="mass:50;" position="-2 1.5 -5"></a-sphere>
+    </a-scene>
+  </body>
+</html>
+
+<!-- error di library physics-system -->

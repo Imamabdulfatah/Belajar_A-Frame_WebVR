@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanding Aframe</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+</head>
+<body>
+    <!-- menambahkan script ke component -->
+    <!-- https://aframe.io/docs/1.3.0/introduction/writing-a-component.html#sidebar -->
+
+    <script>
+        // https://aframe.io/docs/1.3.0/core/component.html#property-types
+        
+        // init ini digunakan untuk menginisialisasi data dan di transfer kekomponent
+        // console.log dibawah di isi data string
+        // dan gigunakan membentuk data atau prototype properties
+
+        // schema ini digunakan untuk component seperti material , position dan lain
+        // dan type ini yaitu tipe data dan defaultnya dibawah websitenya
+      
+        // console.log(this.el)  ==   let box= document.querySelector("#box1"); console.log(box);
+        // ini digunakan untuk mengambil mengambil data id, material dll
+        // pelajari lagi tentang javasript DOM
+        // 
+        AFRAME.registerComponent('hello-aframe', {
+            schema : {
+                pesan: {type: "string", default:"hello"},
+                pesan2: {type: "string", default:"sesuatu"},
+            },
+            init : function() {
+                // // membuat bentuk data
+                // console.log(this.data.pesan + " " + this.data.pesan2);
+
+                // // mencoba console this.el
+                // console.log(this.el);
+
+                // let box= document.querySelector("#box1");
+                // console.log(box);
+
+                // // jika diclick maka akan menghasilkan data goodbye itu dari a-box contoh click, mouseenter dll
+                // // ev ini digunakan sebagai object dan getAttribute untuk mengambildata contoh position
+                let data = this.data;
+                let el = this.el;
+                this.el.addEventListener('click', function(ev){
+                    console.log(data.pesan + " " + data.pesan2);
+                    let clickedData = ev.srcElement.getAttribute('position');
+                    let y1 = clickedData.y + 0.5;
+                    let x = clickedData.x;
+                    // ev.srcElement.setAttribute('hello-aframe', "pesan:hihihi");
+                    ev.srcElement.setAttribute('position', x + " " + y1 + " -3")
+                });
+            },
+        });
+    </script>
+
+    <a-scene>
+      <a-camera>
+          <a-cursor></a-cursor>
+      </a-camera>
+    
+      <a-entity hello-aframe="pesan:hello; pesan2:entity baru"></a-entity>
+
+      <a-box
+        hello-aframe="pesan: hello; pesan2:a-box merah"
+        id="box1"
+        material="color:red;"
+        position="-2 1.5 -3"
+      ></a-box>
+
+      <a-box
+        hello-aframe="pesan: goodbye; pesan2:a-box hijau"
+        id="box2"
+        material="color:green;"
+        position="2 1.5 -3"
+      ></a-box>
+    </a-scene>
+</body>
+</html>

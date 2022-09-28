@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- web untuk ngambil scripnya  event -->
+    <!-- https://www.npmjs.com/package/aframe-event-set-component -->
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+    <!-- web belajar lebih mengenai event handler -->
+    <!-- https://aframe.io/docs/1.3.0/introduction/interactions-and-controllers.html#sidebar -->
+    <a-scene>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+        
+        <!-- box 3 hijau animasi jika di pilih -->
+        <!-- resume ini akan bergerak terlebih dahulu jika diarahkan dan keluar dari kotak akan berhenti -->
+        <!-- kalau start di maka akan bergerak lalu berhenti -->
+        <a-box
+            position="-2 1.5 -3"
+            color="green"
+            animation__satu = "property:scale; to:0.5 1.5 0.5; dur:2000; loop:true;
+                startEvents:mouseenter;
+                pauseEvents:mouseleave;
+                resumeEvents:mouseenter"
+            >
+
+        </a-box>
+    
+    <!-- event-set__satu adalah ketika cursor meninggalkan kotak maka warna akan berubah -->
+
+    <!-- event1 mouseleave digunakan jika cursor keluarkotak -->
+    <!-- event2 mouseenter digunakan jika masuk/kembali kekotanya -->
+    <!-- event3 untuk click dan target ini item mana yang dipilih jika diklik maka box2 ditarget -->
+        <a-box
+            position="0 1.5 -3"
+            color="red"
+            event-set__satu = "_event:mouseleave;color:#00aa00;rotation:0 45 45;"
+            event-set__dua = "_event:mouseenter;color:red;rotation:0 0 0;"
+            event-set__tiga = "_event:click;color:#aa00aa;rotation:45 0 45;_target:#box2">
+        </a-box>
+
+        <a-box
+            position="2 1.5 -3"
+            color="yellow"
+            id="box2"
+            >
+
+        </a-box>
+    </a-scene>
+    
+</body>
+</html>
